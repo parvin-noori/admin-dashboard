@@ -1,13 +1,13 @@
 import React, { useEffect } from "react";
 import logo from "@assets/images/logo.svg";
 import {
-  Form,
   Link,
-  useActionData,
+  Form,
+  useSubmit,
   useNavigate,
   useNavigation,
+  useActionData,
   useRouteError,
-  useSubmit,
 } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { httpService } from "../../../core/http-service";
@@ -20,11 +20,10 @@ export default function register() {
     formState: { errors },
   } = useForm();
 
-  const submitForm = useSubmit();
-
+  const formSubmit = useSubmit();
   const onsubmit = (data) => {
-    const { confirmPassword, ...userData } = data;
-    submitForm(userData, { method: "post" });
+    const { confirmPassword, ...formData } = data;
+    formSubmit(formData, { method: "POST" });
   };
 
   const navigation = useNavigation();
@@ -32,16 +31,17 @@ export default function register() {
 
   const isSuccessOperation = useActionData();
 
-  const routeErrors = useRouteError();
-
   const navigate = useNavigate();
-  // useEffect(() => {
-  //   if (isSubmitting) {
-  //     setTimeout(() => {
-  //       navigate("/login");
-  //     }, 2000);
-  //   }
-  // }, [isSubmitting]);
+
+  useEffect(() => {
+    if (isSuccessOperation) {
+      setTimeout(() => {
+        navigate("/login");
+      }, 2000);
+    }
+  }, [isSuccessOperation]);
+
+  const routerErrors=useRouteError()
 
   return (
     <>
@@ -140,18 +140,18 @@ export default function register() {
                   disabled={isSubmitting}
                   className="btn btn-lg btn-primary"
                 >
-                  {isSubmitting ? "در هر حال انجام عملیات" : "ثبت نام کنید"}
+                  {isSubmitting ? "در حال انجام عملیات" : "ثبت نام کنید"}
                 </button>
               </div>
               {isSuccessOperation && (
-                <div className="alert alert-success text-success p-2 pt-1">
-                  عملیات با موفقیت انجام شد
+                <div className="alert alert-success text-success p-2 mt-3">
+                  عمیلیات با موفقیت انجام شد
                 </div>
               )}
-              {routeErrors && (
+              {routerErrors &&(
                 <div className="alert alert-danger text-danger p-2 mt-3">
-                  {routeErrors.response?.data.map((error) => (
-                    <p className="mb-0">{error}</p>
+                  {routerErrors.response.data.map(error=>(
+                    <p className="mb-0">{error.description}</p>
                   ))}
                 </div>
               )}
