@@ -1,7 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import logo from "@assets/images/logo.svg";
-import { Link } from "react-router-dom";
+import {
+  Form,
+  Link,
+  useActionData,
+  useNavigate,
+  useNavigation,
+  useRouteError,
+  useSubmit,
+} from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { httpService } from "../../../core/http-service";
 
 export default function register() {
   const {
@@ -10,7 +19,29 @@ export default function register() {
     watch,
     formState: { errors },
   } = useForm();
-  const onsubmit = (data) => console.log(data);
+
+  const submitForm = useSubmit();
+
+  const onsubmit = (data) => {
+    const { confirmPassword, ...userData } = data;
+    submitForm(userData, { method: "post" });
+  };
+
+  const navigation = useNavigation();
+  const isSubmitting = navigation.state !== "idle";
+
+  const isSuccessOperation = useActionData();
+
+  const routeErrors = useRouteError();
+
+  const navigate = useNavigate();
+  // useEffect(() => {
+  //   if (isSubmitting) {
+  //     setTimeout(() => {
+  //       navigate("/login");
+  //     }, 2000);
+  //   }
+  // }, [isSubmitting]);
 
   return (
     <>
@@ -31,7 +62,7 @@ export default function register() {
       <div className="card">
         <div className="card-body">
           <div className="m-sm-4">
-            <form onSubmit={handleSubmit(onsubmit)}>
+            <Form onSubmit={handleSubmit(onsubmit)}>
               <div className="mb-3">
                 <label className="form-label">موبایل</label>
                 <input
@@ -96,7 +127,7 @@ export default function register() {
                       {errors.confirmPassword?.message}
                     </p>
                   )}
-                   {errors.confirmPassword &&
+                {errors.confirmPassword &&
                   errors.confirmPassword.type === "validate" && (
                     <p className="text-danger small fw-bold mt-1">
                       {errors.confirmPassword?.message}
@@ -104,14 +135,37 @@ export default function register() {
                   )}
               </div>
               <div className="text-center mt-3">
-                <button type="submit" className="btn btn-lg btn-primary">
-                  ثبت نام کنید
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="btn btn-lg btn-primary"
+                >
+                  {isSubmitting ? "در هر حال انجام عملیات" : "ثبت نام کنید"}
                 </button>
               </div>
-            </form>
+              {isSuccessOperation && (
+                <div className="alert alert-success text-success p-2 pt-1">
+                  عملیات با موفقیت انجام شد
+                </div>
+              )}
+              {routeErrors && (
+                <div className="alert alert-danger text-danger p-2 mt-3">
+                  {routeErrors.response?.data.map((error) => (
+                    <p className="mb-0">{error}</p>
+                  ))}
+                </div>
+              )}
+            </Form>
           </div>
         </div>
       </div>
     </>
   );
+}
+
+export async function registerAction({ request }) {
+  const formData = await request.formData();
+  const data = Object.fromEntries(formData);
+  const response = await httpService.post("/Users", data);
+  return response.status === 200;
 }
