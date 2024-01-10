@@ -11,6 +11,7 @@ import {
 } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { httpService } from "../../../core/http-service";
+import { useTranslation } from "react-i18next";
 
 export default function register() {
   const {
@@ -42,6 +43,8 @@ export default function register() {
   }, [isSuccessOperation]);
 
   const routerErrors=useRouteError()
+
+  const {t}=useTranslation()
 
   return (
     <>
@@ -140,7 +143,8 @@ export default function register() {
                   disabled={isSubmitting}
                   className="btn btn-lg btn-primary"
                 >
-                  {isSubmitting ? "در حال انجام عملیات" : "ثبت نام کنید"}
+                  {t('register.register')}
+                  {/* {isSubmitting ? "در حال انجام عملیات" : "ثبت نام کنید"} */}
                 </button>
               </div>
               {isSuccessOperation && (
@@ -150,7 +154,7 @@ export default function register() {
               )}
               {routerErrors &&(
                 <div className="alert alert-danger text-danger p-2 mt-3">
-                  {routerErrors.response.data.map(error=>(
+                  {routerErrors.response?.data.map(error=>(
                     <p className="mb-0">{error.description}</p>
                   ))}
                 </div>

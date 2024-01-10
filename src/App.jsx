@@ -5,6 +5,7 @@ import Login from "../src/features/identity/components/login";
 import Register from "../src/features/identity/components/register"
 import { RouterProvider } from "react-router-dom";
 import router from './router'
+import './core/i18next'
 
 function App() {
   return <RouterProvider router={router}/>;
