@@ -50,14 +50,14 @@ export default function register() {
     <>
       <div className="text-center mt-4">
         <img src={logo} style={{ height: "100px" }} />
-        <h1 className="h2">پلتفرم آموزش آنلاین</h1>
+        <h1 className="h2"> {t('register.title')}</h1>
         <p className="lead">
-          جهت استفاده از ویژگی های پلتفرم آموزش آنلاین کلاسبن ثبت نام کنید
+          {t('register.introMessage')}
         </p>
         <p className="lead">
-          قبلا ثبت نام کرده اید؟
+        {t('register.alreadyRegistered')}
           <Link to="/login" className="me-2">
-            وارد شوید{" "}
+          {t('register.signin')}{" "}
           </Link>
         </p>
       </div>
@@ -67,59 +67,59 @@ export default function register() {
           <div className="m-sm-4">
             <Form onSubmit={handleSubmit(onsubmit)}>
               <div className="mb-3">
-                <label className="form-label">موبایل</label>
+                <label className="form-label">{t('register.mobile')}</label>
                 <input
                   className={`form-control form-control-lg ${
                     errors.mobile && "is-invalid"
                   }`}
                   {...register("mobile", {
-                    required: "وارد کردن شماره تلفن ضروری است",
+                    required: true,
                     maxLength: 11,
                     minLength: 11,
                   })}
                 />
                 {errors.mobile && errors.mobile.type === "required" && (
                   <p className="text-danger small fw-bold mt-1">
-                    {errors.mobile?.message}
+                    {t('register.validation.mobileRequired')}
                   </p>
                 )}
                 {errors.mobile &&
                   (errors.mobile.type === "maxLength" ||
                     errors.mobile.type === "minLength") && (
                     <p className="text-danger small fw-bold mt-1">
-                      شماره همراه باید ۱۱ رقم باشد
+                      {t('register.mobileLength')}
                     </p>
                   )}
               </div>
               <div className="mb-3">
-                <label className="form-label">رمز عبور</label>
+                <label className="form-label">{t('register.password')}</label>
                 <input
                   className={`form-control form-control-lg ${
                     errors.password && "is-invalid"
                   }`}
                   type="password"
                   {...register("password", {
-                    required: "وارد کردن رمز عبور الزامی ست",
+                    required: true,
                   })}
                 />
                 {errors.password && errors.password.type === "required" && (
                   <p className="text-danger small fw-bold mt-1">
-                    {errors.password?.message}
+                    {t('register.validaiton.passwordRequired')}
                   </p>
                 )}
               </div>
               <div className="mb-3">
-                <label className="form-label">تکرار رمز عبور</label>
+                <label className="form-label">{t('register.repeatPassword')}</label>
                 <input
                   className={`form-control form-control-lg ${
                     errors.confirmPassword && "is-invalid"
                   }`}
                   type="password"
                   {...register("confirmPassword", {
-                    required: "تکرار رمز عبور الزامی ست",
+                    required: true,
                     validate: (value) => {
                       if (watch("password") !== value) {
-                        return "عدم تطابق با رمز وارد شده";
+                        return t("register.validation.notMatching");
                       }
                     },
                   })}
@@ -127,7 +127,7 @@ export default function register() {
                 {errors.confirmPassword &&
                   errors.confirmPassword.type === "required" && (
                     <p className="text-danger small fw-bold mt-1">
-                      {errors.confirmPassword?.message}
+                      {t('register.validation.repeatPasswordRequired')}
                     </p>
                   )}
                 {errors.confirmPassword &&
@@ -149,7 +149,7 @@ export default function register() {
               </div>
               {isSuccessOperation && (
                 <div className="alert alert-success text-success p-2 mt-3">
-                  عمیلیات با موفقیت انجام شد
+                  {t('register.successOperation')}
                 </div>
               )}
               {routerErrors &&(

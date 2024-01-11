@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import usFlag from "@assets/images/us.png";
 import faFlag from "@assets/images/fa.png";
+import { useAppContext } from "../contexts/app/app-context";
 
 export default function ChangeLanguage() {
   const [show, setShow] = useState(false);
@@ -8,9 +9,9 @@ export default function ChangeLanguage() {
 
   useEffect(() => {
     const checkIfClickOutside = (e) => {
-        if(show && ref.current && !ref.current.contains(e.target)){
-            setShow(false)
-        }
+      if (show && ref.current && !ref.current.contains(e.target)) {
+        setShow(false);
+      }
     };
 
     document.addEventListener("mousedown", checkIfClickOutside);
@@ -20,10 +21,12 @@ export default function ChangeLanguage() {
     };
   }, [show]);
 
+  const { language, changeLanguage } = useAppContext();
+
   return (
     <div className="dropdown">
       <a className="nav-flag dropdown-toggle" onClick={() => setShow(true)}>
-        <img src={usFlag} alt="english" />
+        <img src={language === "fa" ? faFlag : usFlag} alt="english" />
       </a>
       <div
         ref={ref}
@@ -31,11 +34,19 @@ export default function ChangeLanguage() {
           show ? "show" : undefined
         }`}
       >
-        <a href="" className="dropdown-item" style={{ textAlign: "right" }}>
+        <a
+          className="dropdown-item fw-bold d-flex align-items-center gap-2"
+          style={{ textAlign: language === "fa" ? "right" : "left" }}
+          onClick={() => changeLanguage("fa")}
+        >
           <img src={faFlag} alt="" width={20} className="ms-2" />
           <span className="align-middle"> فارسی</span>
         </a>
-        <a href="" className="dropdown-item" style={{ textAlign: "right" }}>
+        <a
+          className="dropdown-item fw-bold d-flex align-items-center gap-2"
+          style={{ textAlign: language === "fa" ? "right" : "left" }}
+          onClick={() => changeLanguage("en")}
+        >
           <img src={usFlag} alt="" width={20} className="ms-2" />
           <span className="align-middle"> english</span>
         </a>
