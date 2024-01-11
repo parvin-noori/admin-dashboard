@@ -1,5 +1,7 @@
-import { createContext, useContext, useEffect, useReducer } from "react";
-import appReducer from "./app-reducer";
+import { useContext, useEffect } from "react";
+import { useReducer } from "react";
+import { createContext } from "react";
+import appReducer from './app-reducer'
 import { useTranslation } from "react-i18next";
 
 const AppContext = createContext();
@@ -16,10 +18,9 @@ const AppProvider = ({ children }) => {
   };
 
   useEffect(()=>{
-    i18n.changeLanguage(state.language);
-    localStorage.setItem('language',state.language)
-    document.body.dataset.direction=state.language==='fa'?'rtl':'ltr'
-
+i18n.changeLanguage(state.language);
+localStorage.setItem('language',state.language)
+document.body.dataset.direction=state.language==='fa'?'rtl':'ltr'
   },[state.language])
 
   return (
@@ -29,6 +30,6 @@ const AppProvider = ({ children }) => {
   );
 };
 
-const useAppContext =()=> useContext(AppContext);
+const useAppContext=() => useContext(AppContext);
 
 export { useAppContext, AppProvider };
