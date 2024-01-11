@@ -10,7 +10,7 @@ import {
   useRouteError,
 } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { httpService } from "../../../core/http-service";
+import { httpService } from "@core/http-service";
 import { useTranslation } from "react-i18next";
 
 export default function register() {
@@ -67,7 +67,7 @@ export default function register() {
           <div className="m-sm-4">
             <Form onSubmit={handleSubmit(onsubmit)}>
               <div className="mb-3">
-                <label className="form-label">{t('register.mobile')}</label>
+                <label className="form-label">{t('login.mobile')}</label>
                 <input
                   className={`form-control form-control-lg ${
                     errors.mobile && "is-invalid"
@@ -92,7 +92,7 @@ export default function register() {
                   )}
               </div>
               <div className="mb-3">
-                <label className="form-label">{t('register.password')}</label>
+                <label className="form-label">{t('login.password')}</label>
                 <input
                   className={`form-control form-control-lg ${
                     errors.password && "is-invalid"
@@ -104,7 +104,7 @@ export default function register() {
                 />
                 {errors.password && errors.password.type === "required" && (
                   <p className="text-danger small fw-bold mt-1">
-                    {t('register.validaiton.passwordRequired')}
+                    {t('register.validation.passwordRequired')}
                   </p>
                 )}
               </div>
@@ -155,7 +155,7 @@ export default function register() {
               {routerErrors &&(
                 <div className="alert alert-danger text-danger p-2 mt-3">
                   {routerErrors.response?.data.map(error=>(
-                    <p className="mb-0">{error.description}</p>
+                    <p className="mb-0">  <p className="mb-0">{t(`register.validation.${error.code}`)}</p></p>
                   ))}
                 </div>
               )}

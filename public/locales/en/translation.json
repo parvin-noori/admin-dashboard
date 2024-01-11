@@ -19,5 +19,20 @@
       "PasswordTooShort": "Passwords must be at least 6 characters",
       "DuplicateUserName": "This username is already taken"
     }
+  },
+  "login": {
+    "title": "Online Education Platform",
+    "introMessage": "To log in, you need to use your mobile phone and password",
+    "signingin": "Signing in ...",
+    "signin": "Sign in",
+    "register": "Register",
+    "mobile": "Mobile",
+    "password": "Password",
+    "areNotRegistered": "You're not registered?",
+    "validation": {
+      "mobileRequired": "Mobile is required",
+      "passwordRequired": "Password is required",
+      "IncorrectUserNameOrPassword": "The username or password is incorrect"
+    }
   }
 }
