@@ -1,13 +1,15 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
 import ChangeLanguage from "../components/change-language";
+import ChangeTheme from "../components/change-theme";
 
 export default function identityLayout() {
   return (
     <>
       <div className="main d-flex justify-content-center w-100">
-        <nav className="navbar shadow-sm">
-          <ChangeLanguage/>
+        <nav className="navbar shadow-sm justify-content-start gap-3">
+          <ChangeTheme />
+          <ChangeLanguage />
         </nav>
         <main className="content d-flex p-0">
           <div className="container d-flex flex-column">
