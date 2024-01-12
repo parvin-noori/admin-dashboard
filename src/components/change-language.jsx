@@ -23,10 +23,17 @@ export default function ChangeLanguage() {
 
   const { language, changeLanguage } = useAppContext();
 
+  useEffect(() => {
+    setShow(false);
+  }, [language]);
+
   return (
     <div className="dropdown">
       <a className="nav-flag dropdown-toggle" onClick={() => setShow(true)}>
-        <img src={language === "fa" ? faFlag : usFlag} alt={language==='fa'?'فارسی':'english'} />
+        <img
+          src={language === "fa" ? faFlag : usFlag}
+          alt={language === "fa" ? "فارسی" : "english"}
+        />
       </a>
       <div
         ref={ref}
@@ -34,11 +41,19 @@ export default function ChangeLanguage() {
           show ? "show" : undefined
         }`}
       >
-        <a className="dropdown-item" style={{ textAlign: "right" }} onClick={()=>changeLanguage('fa')}>
+        <a
+          className="dropdown-item"
+          style={{ textAlign: "right" }}
+          onClick={() => changeLanguage("fa")}
+        >
           <img src={faFlag} alt="" width={20} className="ms-2" />
           <span className="align-middle"> فارسی</span>
         </a>
-        <a className="dropdown-item" style={{ textAlign: "right" }} onClick={()=>changeLanguage('en')}>
+        <a
+          className="dropdown-item"
+          style={{ textAlign: "right" }}
+          onClick={() => changeLanguage("en")}
+        >
           <img src={usFlag} alt="" width={20} className="ms-2" />
           <span className="align-middle"> english</span>
         </a>

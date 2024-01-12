@@ -34,5 +34,24 @@
       "passwordRequired": "Password is required",
       "IncorrectUserNameOrPassword": "The username or password is incorrect"
     }
+  },
+  "mainLayout": {
+    "sidebar": {
+      "subtitle": "Online Education Platform",
+      "courseManagement": "Course Management",
+      "allCourses": "All Courses",
+      "coursesCategory": "Courses Category",
+      "courseDiscount": "Course Discount",
+      "userManagement": "User Management",
+      "teacherManagement": "Teacher Management",
+      "studentManagement": "Student Management",
+      "blogManagement": "BlogManagement",
+      "tagManagement": "TagManagement",
+      "postManagement": "PostManagement"
+    }
+  },
+  "categoryList": {
+    "DeleteIsNotPossible": "It is not possible to delete this category",
+    "DuplicateCategory": "The category is duplicate"
   }
 }

@@ -34,5 +34,24 @@
       "passwordRequired": "رمز عبور الزامی است",
       "IncorrectUserNameOrPassword": "موبایل یا رمز عبور صحیح نمی باشد"
     }
+  },
+  "mainLayout": {
+    "sidebar": {
+      "subtitle": "پلتفرم آموزش آنلاین",
+      "courseManagement": "مدیریت دوره ها",
+      "allCourses": "همه دوره ها",
+      "coursesCategory": "دسته بندی دوره ها",
+      "courseDiscount": "تخفیف دوره ها",
+      "userManagement": "مدیریت کاربرها",
+      "teacherManagement": "مدیریت مدرس ها",
+      "studentManagement": "مدیریت دانشجوها",
+      "blogManagement": "مدیریت بلاگ",
+      "tagManagement": "مدیریت تگ ها",
+      "postManagement": "مدیریت پست ها"
+    }
+  },
+  "categoryList": {
+    "DeleteIsNotPossible": "امکان حذف این دسته وجود ندارد",
+    "DuplicateCategory": "امکان افزودن دسته تکراری وجود ندارد"
   }
 }
