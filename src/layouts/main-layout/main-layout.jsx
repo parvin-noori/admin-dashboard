@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 
 import { useTranslation } from "react-i18next";
 
@@ -10,6 +10,12 @@ import Footer from "./footer";
 export default function MainLayout() {
   const [collapseSidebar, setCollapseSidebar] = useState(false);
   const { t } = useTranslation();
+  const token = localStorage.getItem("token");
+  const navigate = useNavigate();
+
+  if (!token) {
+    navigate("/login");
+  }
   return (
     <div className="wrapper " style={{ minHeight: "100vh" }}>
       <Sidebar />
