@@ -9,7 +9,7 @@ export default function Sidebar() {
   const { t } = useTranslation();
 
   return (
-    <nav className={`sidebar ${showSidebar ? "collapsed" : ""}`}>
+    <nav className={`sidebar ${showSidebar ? "" : "collapsed"}`}>
       <div className="sidebar-content">
         <a className="sidebar-brand d-flex flex-column align-items-center pt-0 mb-0">
           <img src={logo} style={{ height: "80px" }} />

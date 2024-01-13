@@ -43,7 +43,7 @@ export default function ChangeLanguage() {
       >
         <a
           className="dropdown-item"
-          style={{ textAlign: "right" }}
+          style={{ textAlign: language === "fa" ? "right" : "left" }}
           onClick={() => changeLanguage("fa")}
         >
           <img src={faFlag} alt="" width={20} className="ms-2" />
@@ -51,7 +51,7 @@ export default function ChangeLanguage() {
         </a>
         <a
           className="dropdown-item"
-          style={{ textAlign: "right" }}
+          style={{ textAlign: language === "fa" ? "right" : "left" }}
           onClick={() => changeLanguage("en")}
         >
           <img src={usFlag} alt="" width={20} className="ms-2" />
