@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function Course({
   title,
@@ -7,13 +8,14 @@ export default function Course({
   description,
   duration,
   numOfReviews,
+  id
 }) {
   return (
     <div className="card">
       <div className="card-img-top" src={coverImageUrl}></div>
       <div className="card-header px-4 pt-4 pb-0">
         <div className="badge bg-primary my-2 fw-bolder">{courseLevel}</div>
-        <h4 className="mb-0">{title}</h4>
+        <h4 className="mb-0"><Link to={`/courses/${id}`}>{title}</Link></h4>
       </div>
       <div className="card-body px-4 pt-2">
         <p className="text-truncate-3">{description}</p>

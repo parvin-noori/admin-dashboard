@@ -7,6 +7,9 @@ import Register, {
 import MainLayout from "./layouts/main-layout/main-layout";
 import Courses, { coursesList } from "./pages/courses";
 import CourseCategories from "./pages/course-categories";
+import CourseDetails, {
+  courseDetailsLoader,
+} from "./features/courses/components/course-details";
 
 const router = createBrowserRouter([
   {
@@ -19,9 +22,14 @@ const router = createBrowserRouter([
         loader: coursesList,
       },
       {
-        path:'/course-categories',
-        element:<CourseCategories/>
-      }
+        path: "/course-categories",
+        element: <CourseCategories />,
+      },
+      {
+        path: "courses/:id",
+        element: <CourseDetails />,
+        loader: courseDetailsLoader,
+      },
     ],
   },
   {
