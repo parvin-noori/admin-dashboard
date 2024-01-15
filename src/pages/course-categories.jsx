@@ -32,7 +32,7 @@ export async function categoriesLoader({ request }) {
 
 const loadCategories = async (request) => {
   const page = new URL(request.url).searchParams.get("page") || 1;
-  const pageSize = 1;
+  const pageSize = import.meta.env.VITE_PAGEE_SIZE;
   let url = "/CourseCategory/sieve";
   url += `?page=${page}&pageSize=${pageSize}`;
   const response = await httpInterceptedService.get(url);
