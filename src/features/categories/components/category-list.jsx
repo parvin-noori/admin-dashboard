@@ -3,7 +3,7 @@ import Pagination from "../../../components/pagination";
 import { useNavigation } from "react-router-dom";
 import Spinner from "../../../components/spinner";
 
-export default function CategoryList({ categories: { data, totalRecords },setShowDeleteModal }) {
+export default function CategoryList({ categories: { data, totalRecords },deleteCategory }) {
   const navigation=useNavigation()
   return (
     <>
@@ -38,7 +38,7 @@ export default function CategoryList({ categories: { data, totalRecords },setSho
                             <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path>
                           </svg>
                         </a>
-                        <a onClick={()=>setShowDeleteModal(true)}>
+                        <a onClick={()=>deleteCategory(category.id)}>
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             width="24"

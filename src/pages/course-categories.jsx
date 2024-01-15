@@ -1,5 +1,5 @@
 import React, { Suspense, useState } from "react";
-import { defer, useLoaderData, Await } from "react-router-dom";
+import { defer, useLoaderData, Await, useNavigate } from "react-router-dom";
 import { httpInterceptedService } from "../core/http-service";
 import CategoryList from "../features/categories/components/category-list";
 import Modal from "../components/modal";
@@ -7,6 +7,24 @@ import Modal from "../components/modal";
 export default function CourseCategories() {
   const data = useLoaderData();
   const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState();
+
+  const deleteCategory = (categoryId) => {
+    setSelectedCategory(categoryId);
+    setShowDeleteModal(true);
+  };
+
+  const navigate=useNavigate()
+
+  const handleClickCategory = async () => {
+    setShowDeleteModal(false);
+    const response=await httpInterceptedService.delete(`/CourseCategory/${selectedCategory}`)
+
+    if(response){
+      const url=new URL(window.location.href)
+      navigate(url.pathname+url.search)
+    }
+  };
   return (
     <>
       <div className="row">
@@ -20,12 +38,15 @@ export default function CourseCategories() {
           >
             <Await resolve={data.categories}>
               {(loadedCategories) => (
-                <CategoryList setShowDeleteModal={setShowDeleteModal} categories={loadedCategories} />
+                <CategoryList
+                  deleteCategory={deleteCategory}
+                  categories={loadedCategories}
+                />
               )}
             </Await>
           </Suspense>
         </div>
-      </div> 
+      </div>
       <Modal
         isOpen={showDeleteModal}
         open={setShowDeleteModal}
@@ -38,7 +59,12 @@ export default function CourseCategories() {
         >
           انصراف
         </button>
-        <button className="btn btn-primary fw-bolder">حذف</button>
+        <button
+          className="btn btn-primary fw-bolder"
+          onClick={handleClickCategory}
+        >
+          حذف
+        </button>
       </Modal>
     </>
   );
