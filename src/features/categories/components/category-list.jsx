@@ -1,12 +1,16 @@
 import React from "react";
 import Pagination from "../../../components/pagination";
+import { useNavigation } from "react-router-dom";
+import Spinner from "../../../components/spinner";
 
 export default function CategoryList({ categories: { data, totalRecords } }) {
+  const navigation=useNavigation()
   return (
     <>
       <div className="row">
         <div className="col-12">
           <div className="cards">
+            {navigation.state !=='idle' && <Spinner/>}
             <table className="table table-striped">
               <thead>
                 <tr>
