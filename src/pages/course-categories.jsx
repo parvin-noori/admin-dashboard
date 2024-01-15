@@ -3,28 +3,50 @@ import { defer, useLoaderData, Await, useNavigate } from "react-router-dom";
 import { httpInterceptedService } from "../core/http-service";
 import CategoryList from "../features/categories/components/category-list";
 import Modal from "../components/modal";
+import { toast } from "react-toastify";
+import { useTranslation } from "react-i18next";
 
 export default function CourseCategories() {
   const data = useLoaderData();
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState();
+  const { t } = useTranslation();
 
   const deleteCategory = (categoryId) => {
     setSelectedCategory(categoryId);
     setShowDeleteModal(true);
   };
 
-  const navigate=useNavigate()
+  const navigate = useNavigate();
 
-  const handleClickCategory = async () => {
+  const handleDeleteCategory = async () => {
     setShowDeleteModal(false);
-    const response=await httpInterceptedService.delete(`/CourseCategory/${selectedCategory}`)
+    const response = httpInterceptedService.delete(
+        `/CourseCategory/${selectedCategory}`
+    );
 
-    if(response){
-      const url=new URL(window.location.href)
-      navigate(url.pathname+url.search)
-    }
-  };
+    toast.promise(
+        response,
+        {
+            pending: "در حال حذف ...",
+            success: {
+                render() {
+                    const url = new URL(window.location.href);
+                    navigate(url.pathname + url.search);
+                    return "عملیات با موفقیت انجام شد";
+                },
+            },
+            error: {
+                render({ data }) {
+                    return t("categoryList." + data.response.data.code);
+                },
+            },
+        },
+        {
+            position: toast.POSITION.BOTTOM_LEFT,
+        }
+    );
+};
   return (
     <>
       <div className="row">
@@ -61,7 +83,7 @@ export default function CourseCategories() {
         </button>
         <button
           className="btn btn-primary fw-bolder"
-          onClick={handleClickCategory}
+          onClick={handleDeleteCategory}
         >
           حذف
         </button>

@@ -7,6 +7,8 @@ import { RouterProvider } from "react-router-dom";
 import router from "./router";
 import "./core/i18next";
 import { useAppContext } from "./contexts/app/app-context";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
 
 function App() {
   const { theme } = useAppContext();
@@ -22,7 +24,12 @@ function App() {
       head.removeChild(link);
     };
   }, [theme]);
-  return <RouterProvider router={router} />;
+  return (
+    <>
+      <RouterProvider router={router} />
+      <ToastContainer rtl />
+    </>
+  );
 }
 
 export default App;
