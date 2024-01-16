@@ -5,11 +5,13 @@ import CategoryList from "../features/categories/components/category-list";
 import Modal from "../components/modal";
 import { toast } from "react-toastify";
 import { useTranslation } from "react-i18next";
+import AddOrUpdateCategory from "../features/categories/components/add-or-update-category";
 
 export default function CourseCategories() {
   const data = useLoaderData();
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState();
+  const [showAddCategory, setShowAddCategory] = useState(false);
   const { t } = useTranslation();
 
   const deleteCategory = (categoryId) => {
@@ -22,38 +24,44 @@ export default function CourseCategories() {
   const handleDeleteCategory = async () => {
     setShowDeleteModal(false);
     const response = httpInterceptedService.delete(
-        `/CourseCategory/${selectedCategory}`
+      `/CourseCategory/${selectedCategory}`
     );
 
     toast.promise(
-        response,
-        {
-            pending: "در حال حذف ...",
-            success: {
-                render() {
-                    const url = new URL(window.location.href);
-                    navigate(url.pathname + url.search);
-                    return "عملیات با موفقیت انجام شد";
-                },
-            },
-            error: {
-                render({ data }) {
-                    return t("categoryList." + data.response.data.code);
-                },
-            },
+      response,
+      {
+        pending: "در حال حذف ...",
+        success: {
+          render() {
+            const url = new URL(window.location.href);
+            navigate(url.pathname + url.search);
+            return "عملیات با موفقیت انجام شد";
+          },
         },
-        {
-            position: toast.POSITION.BOTTOM_LEFT,
-        }
+        error: {
+          render({ data }) {
+            return t("categoryList." + data.response.data.code);
+          },
+        },
+      },
+      {
+        position: toast.POSITION.BOTTOM_LEFT,
+      }
     );
-};
+  };
   return (
     <>
       <div className="row">
         <div className="col-12">
           <div className="d-flex align-items-center justify-content-between mb-5">
-            <a className="btn btn-primary fw-bolder mt-n1">افزودن دسته جدید</a>
+            <a
+              className="btn btn-primary fw-bolder mt-n1"
+              onClick={() => setShowAddCategory(true)}
+            >
+              افزودن دسته جدید
+            </a>
           </div>
+          {showAddCategory && <AddOrUpdateCategory setShowAddCategory={setShowAddCategory}/>}
 
           <Suspense
             fallback={<p className="text-info">در حال دریافت اطلاعات</p>}
