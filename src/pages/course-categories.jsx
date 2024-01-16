@@ -27,27 +27,21 @@ export default function CourseCategories() {
       `/CourseCategory/${selectedCategory}`
     );
 
-    toast.promise(
-      response,
-      {
-        pending: "در حال حذف ...",
-        success: {
-          render() {
-            const url = new URL(window.location.href);
-            navigate(url.pathname + url.search);
-            return "عملیات با موفقیت انجام شد";
-          },
-        },
-        error: {
-          render({ data }) {
-            return t("categoryList." + data.response.data.code);
-          },
+    toast.promise(response, {
+      pending: "در حال حذف ...",
+      success: {
+        render() {
+          const url = new URL(window.location.href);
+          navigate(url.pathname + url.search);
+          return "عملیات با موفقیت انجام شد";
         },
       },
-      {
-        position: toast.POSITION.BOTTOM_LEFT,
-      }
-    );
+      error: {
+        render({ data }) {
+          return t("categoryList." + data.response.data.code);
+        },
+      },
+    });
   };
   return (
     <>
@@ -61,7 +55,9 @@ export default function CourseCategories() {
               افزودن دسته جدید
             </a>
           </div>
-          {showAddCategory && <AddOrUpdateCategory setShowAddCategory={setShowAddCategory}/>}
+          {showAddCategory && (
+            <AddOrUpdateCategory setShowAddCategory={setShowAddCategory} />
+          )}
 
           <Suspense
             fallback={<p className="text-info">در حال دریافت اطلاعات</p>}

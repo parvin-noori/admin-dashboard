@@ -16,31 +16,25 @@ export default function AddOrUpdateCategory({ setShowAddCategory }) {
   const onSubmit = (data) => {
     setShowAddCategory(false);
     const response = httpInterceptedService.post(`/CourseCategory/`, data);
-    toast.promise(
-      response,
-      {
-        pending: "در حال ذخیره اطلاعات ...",
-        success: {
-          render() {
-            const url = new URL(window.location.href);
-            navigate(url.pathname + url.search);
-            return "عملیات با موفقیت انجام شد";
-          },
-        },
-        error: {
-          render({ data }) {
-            if (data.response.status === 400) {
-              return t("categoryList." + data.response.data.code);
-            } else {
-              return "خطار در انجام عملیات";
-            }
-          },
+    toast.promise(response, {
+      pending: "در حال ذخیره اطلاعات ...",
+      success: {
+        render() {
+          const url = new URL(window.location.href);
+          navigate(url.pathname + url.search);
+          return "عملیات با موفقیت انجام شد";
         },
       },
-      {
-        position: toast.POSITION.BOTTOM_LEFT,
-      }
-    );
+      error: {
+        render({ data }) {
+          if (data.response.status === 400) {
+            return t("categoryList." + data.response.data.code);
+          } else {
+            return "خطار در انجام عملیات";
+          }
+        },
+      },
+    });
   };
   return (
     <div className="card">
