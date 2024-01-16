@@ -1,17 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { httpInterceptedService } from "../../../core/http-service";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { useCategoryContext } from "../category-context";
 
 export default function AddOrUpdateCategory({ setShowAddCategory }) {
   const {
     register,
     handleSubmit,
     formState: { errors },
+    setValue,
   } = useForm();
 
   const navigate = useNavigate();
+
+  const onClose = () => {
+    setShowAddCategory(false);
+    setCategory(null);
+  };
 
   const onSubmit = (data) => {
     setShowAddCategory(false);
@@ -22,6 +29,9 @@ export default function AddOrUpdateCategory({ setShowAddCategory }) {
         render() {
           const url = new URL(window.location.href);
           navigate(url.pathname + url.search);
+          if (category) {
+            setCategory(null);
+          }
           return "عملیات با موفقیت انجام شد";
         },
       },
@@ -36,6 +46,15 @@ export default function AddOrUpdateCategory({ setShowAddCategory }) {
       },
     });
   };
+
+  const { category, setCategory } = useCategoryContext();
+
+  useEffect(() => {
+    if (category) {
+      setValue("name", category.name);
+      setValue("id", category.id);
+    }
+  }, [category]);
   return (
     <div className="card">
       <div className="card-body">
@@ -59,7 +78,7 @@ export default function AddOrUpdateCategory({ setShowAddCategory }) {
               <button
                 className="btn btn-lg btn-secondary ms-2"
                 type="button"
-                onClick={() => setShowAddCategory(false)}
+                onClick={onClose}
               >
                 بستن
               </button>

@@ -6,6 +6,7 @@ import Modal from "../components/modal";
 import { toast } from "react-toastify";
 import { useTranslation } from "react-i18next";
 import AddOrUpdateCategory from "../features/categories/components/add-or-update-category";
+import { useCategoryContext } from "../features/categories/category-context";
 
 export default function CourseCategories() {
   const data = useLoaderData();
@@ -13,6 +14,7 @@ export default function CourseCategories() {
   const [selectedCategory, setSelectedCategory] = useState();
   const [showAddCategory, setShowAddCategory] = useState(false);
   const { t } = useTranslation();
+  const { category } = useCategoryContext();
 
   const deleteCategory = (categoryId) => {
     setSelectedCategory(categoryId);
@@ -55,7 +57,7 @@ export default function CourseCategories() {
               افزودن دسته جدید
             </a>
           </div>
-          {showAddCategory && (
+          {(showAddCategory || category) && (
             <AddOrUpdateCategory setShowAddCategory={setShowAddCategory} />
           )}
 
