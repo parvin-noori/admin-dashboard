@@ -11,11 +11,14 @@ import CourseDetails, {
   courseDetailsLoader,
 } from "./features/courses/components/course-details";
 import { CategoryProvider } from "./features/categories/category-context";
+import UnhandledException from "./pages/unhandled-exception";
+import NotFound from "./pages/not-found";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout />,
+    errorElement: <UnhandledException />,
     children: [
       {
         element: <Courses />,
@@ -55,6 +58,7 @@ const router = createBrowserRouter([
       },
     ],
   },
+  { path: "*", element: <NotFound /> },
 ]);
 
 export default router;
