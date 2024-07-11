@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://parvin-noori.github.io/admin-dashboard",
+  "homepage": "https://parvin-noori.github.io/admin-dashboard/",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
