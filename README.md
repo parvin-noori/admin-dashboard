@@ -1,8 +1,17 @@
-# React + Vite
+## Admin Panel Project
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This admin panel is a result of completing the React course by Classbn. I developed this project using React and Vite. The following libraries and technologies were used in this project:
 
-Currently, two official plugins are available:
+- **React Hook Form** for form management
+- **Lodash** for utility functions
+- **React Toastify** for notifications
+- **React Router DOM** for routing
+- **Context API** for state management
+- **i18next** for internationalization
+- **Axios** for making API requests
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+The project supports two languages and includes both dark and light themes.
+
+[View the Project]
+
+![demo](https://github.com/parvin-noori/admin-dashboard/blob/master/src/assets/images/screenShots/smartmockups_adminDashboard.jpg)
