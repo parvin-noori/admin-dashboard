@@ -12,6 +12,6 @@ This admin panel is a result of completing the React course by Classbn. I develo
 
 The project supports two languages and includes both dark and light themes.
 
-[View the Project]
+[View the Project](https://parvin-noori.github.io/admin-dashboard/)
 
 ![demo](https://github.com/parvin-noori/admin-dashboard/blob/master/src/assets/images/screenShots/smartmockups_adminDashboard.jpg)
