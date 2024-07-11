@@ -11,7 +11,7 @@ export default defineConfig({
     },
   },
   plugins: [react()],
-  base: '/admin-dashboard/login', // Set to your GitHub Pages repo name
+  base: '/admin-dashboard/', // Set to your GitHub Pages repo name
   build: {
     outDir: 'dist', // Ensure the output directory is `dist`
   },
