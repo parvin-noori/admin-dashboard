@@ -48,6 +48,14 @@
       "blogManagement": "مدیریت بلاگ",
       "tagManagement": "مدیریت تگ ها",
       "postManagement": "مدیریت پست ها"
+    },
+    "topNav": {
+      "logout": "خارج شوید"
+    }
+  },
+  "pages": {
+    "courses": {
+      "AddNewCourse": "افزودن دوره جدید"
     }
   },
   "categoryList": {

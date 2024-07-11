@@ -48,6 +48,14 @@
       "blogManagement": "BlogManagement",
       "tagManagement": "TagManagement",
       "postManagement": "PostManagement"
+    },
+    "topNav": {
+      "logout": "logout"
+    }
+  },
+  "pages": {
+    "courses": {
+      "AddNewCourse": "Add new course"
     }
   },
   "categoryList": {

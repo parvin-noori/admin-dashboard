@@ -3,8 +3,10 @@ import ChangeLanguage from "../../components/change-language";
 import ChangeTheme from "../../components/change-theme";
 import { useAppContext } from "../../contexts/app/app-context";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 export default function TopNav() {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const { language } = useAppContext();
   const logOut = () => {
@@ -27,7 +29,8 @@ export default function TopNav() {
           className="btn ms-2 btn-outline-danger fw-bold"
           onClick={logOut}
         >
-          خارج شوید
+          {/* خارج شوید */}
+          {t("mainLayout.topNav.logout")}
         </button>
       </div>
     </nav>
