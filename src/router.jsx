@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter,createHashRouter } from "react-router-dom";
 import IdentityLayout from "./layouts/identity-layout";
 import Login, { loginAction } from "./features/identity/components/login";
 import Register, {
@@ -14,7 +14,7 @@ import { CategoryProvider } from "./features/categories/category-context";
 import UnhandledException from "./pages/unhandled-exception";
 import NotFound from "./pages/not-found";
 
-const router = createBrowserRouter([
+const router = createHashRouter([
   {
     path: "/",
     element: <MainLayout />,
