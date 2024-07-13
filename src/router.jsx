@@ -14,7 +14,7 @@ import { CategoryProvider } from "./features/categories/category-context";
 import UnhandledException from "./pages/unhandled-exception";
 import NotFound from "./pages/not-found";
 
-const router = createHashRouter([
+const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout />,
