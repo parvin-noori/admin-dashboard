@@ -16,7 +16,7 @@ import NotFound from "./pages/not-found";
 
 const router = createHashRouter([
   {
-    path: "/",
+    path: "",
     element: <MainLayout />,
     errorElement: <UnhandledException />,
     children: [
