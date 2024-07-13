@@ -42,22 +42,20 @@ export default function register() {
     }
   }, [isSuccessOperation]);
 
-  const routerErrors=useRouteError()
+  const routerErrors = useRouteError();
 
-  const {t}=useTranslation()
+  const { t } = useTranslation();
 
   return (
     <>
       <div className="text-center mt-4">
         <img src={logo} style={{ height: "100px" }} />
-        <h1 className="h2"> {t('register.title')}</h1>
+        <h1 className="h2"> {t("register.title")}</h1>
+        <p className="lead">{t("register.introMessage")}</p>
         <p className="lead">
-          {t('register.introMessage')}
-        </p>
-        <p className="lead">
-        {t('register.alreadyRegistered')}
+          {t("register.alreadyRegistered")}
           <Link to="/login" className="me-2">
-          {t('register.signin')}{" "}
+            {t("register.signin")}{" "}
           </Link>
         </p>
       </div>
@@ -67,7 +65,7 @@ export default function register() {
           <div className="m-sm-4">
             <Form onSubmit={handleSubmit(onsubmit)}>
               <div className="mb-3">
-                <label className="form-label">{t('login.mobile')}</label>
+                <label className="form-label">{t("login.mobile")}</label>
                 <input
                   className={`form-control form-control-lg ${
                     errors.mobile && "is-invalid"
@@ -80,19 +78,19 @@ export default function register() {
                 />
                 {errors.mobile && errors.mobile.type === "required" && (
                   <p className="text-danger small fw-bold mt-1">
-                    {t('register.validation.mobileRequired')}
+                    {t("register.validation.mobileRequired")}
                   </p>
                 )}
                 {errors.mobile &&
                   (errors.mobile.type === "maxLength" ||
                     errors.mobile.type === "minLength") && (
                     <p className="text-danger small fw-bold mt-1">
-                      {t('register.mobileLength')}
+                      {t("register.validation.mobileLength")}
                     </p>
                   )}
               </div>
               <div className="mb-3">
-                <label className="form-label">{t('login.password')}</label>
+                <label className="form-label">{t("login.password")}</label>
                 <input
                   className={`form-control form-control-lg ${
                     errors.password && "is-invalid"
@@ -104,12 +102,14 @@ export default function register() {
                 />
                 {errors.password && errors.password.type === "required" && (
                   <p className="text-danger small fw-bold mt-1">
-                    {t('register.validation.passwordRequired')}
+                    {t("register.validation.passwordRequired")}
                   </p>
                 )}
               </div>
               <div className="mb-3">
-                <label className="form-label">{t('register.repeatPassword')}</label>
+                <label className="form-label">
+                  {t("register.repeatPassword")}
+                </label>
                 <input
                   className={`form-control form-control-lg ${
                     errors.confirmPassword && "is-invalid"
@@ -127,7 +127,7 @@ export default function register() {
                 {errors.confirmPassword &&
                   errors.confirmPassword.type === "required" && (
                     <p className="text-danger small fw-bold mt-1">
-                      {t('register.validation.repeatPasswordRequired')}
+                      {t("register.validation.repeatPasswordRequired")}
                     </p>
                   )}
                 {errors.confirmPassword &&
@@ -143,19 +143,24 @@ export default function register() {
                   disabled={isSubmitting}
                   className="btn btn-lg btn-primary"
                 >
-                  {t('register.register')}
+                  {t("register.register")}
                   {/* {isSubmitting ? "در حال انجام عملیات" : "ثبت نام کنید"} */}
                 </button>
               </div>
               {isSuccessOperation && (
                 <div className="alert alert-success text-success p-2 mt-3">
-                  {t('register.successOperation')}
+                  {t("register.successOperation")}
                 </div>
               )}
-              {routerErrors &&(
+              {routerErrors && (
                 <div className="alert alert-danger text-danger p-2 mt-3">
-                  {routerErrors.response?.data.map(error=>(
-                    <p className="mb-0">  <p className="mb-0">{t(`register.validation.${error.code}`)}</p></p>
+                  {routerErrors.response?.data.map((error) => (
+                    <p className="mb-0">
+                      {" "}
+                      <p className="mb-0">
+                        {t(`register.validation.${error.code}`)}
+                      </p>
+                    </p>
                   ))}
                 </div>
               )}
