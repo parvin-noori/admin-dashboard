@@ -8,7 +8,6 @@ i18n
   .init({
     lng: "fa", // Default language
     fallbackLng: "en", // Fallback language
-    debug: false,
     ns: ["translation"], // Namespace used in your files
     defaultNS: "translation",
     backend: {
@@ -17,6 +16,7 @@ i18n
     interpolation: {
       escapeValue: false, // React already does escaping
     },
+    debug: false, // Disable debug mode
   });
 
 export default i18n;
