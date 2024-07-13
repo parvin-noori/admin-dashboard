@@ -37,6 +37,14 @@ const AppProvider = ({ children }) => {
 
   useEffect(() => {
     localStorage.setItem("theme", state.theme);
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = `/admin-dashboard/css/${state.theme}.css`;
+    document.head.appendChild(link);
+
+    return () => {
+      document.head.removeChild(link);
+    };
   }, [state.theme]);
 
   return (
