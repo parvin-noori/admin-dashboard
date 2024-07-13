@@ -1,6 +1,6 @@
 ## Admin Panel Project
 
-This admin panel is a result of completing the React course by Classbn. I developed this project using React and Vite. The following libraries and technologies were used in this project:
+This admin panel with User Authentication is a result of completing the React course by Classbn. I developed this project using React and Vite. The following libraries and technologies were used in this project:
 
 - **React Hook Form** for form management
 - **Lodash** for utility functions
