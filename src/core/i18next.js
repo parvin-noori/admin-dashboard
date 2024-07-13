@@ -8,7 +8,7 @@ i18n
   .init({
     lng: "fa", // Default language
     fallbackLng: "en", // Fallback language
-    debug: true,
+    debug: false,
     ns: ["translation"], // Namespace used in your files
     defaultNS: "translation",
     backend: {
